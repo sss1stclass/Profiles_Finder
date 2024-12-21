@@ -7,7 +7,6 @@ import {
   OutMode,
 } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
-import { Paper, Typography } from "@mui/material";
 
 const ParticlesBackground = () => {
   const [init, setInit] = useState(false);
@@ -27,73 +26,75 @@ const ParticlesBackground = () => {
   };
 
   const options: ISourceOptions = useMemo(
-    () => ({
-      background: {
-        color: {
-          value: "#a3a3a3",
+    () => (
+      {
+        background: {
+          color: {
+            value: "#000000",
+          },
         },
-      },
-      fpsLimit: 120,
-      interactivity: {
-        events: {
-          onClick: {
+        fpsLimit: 120,
+        interactivity: {
+          events: {
+            onClick: {
+              enable: true,
+              mode: "push",
+            },
+            onHover: {
+              enable: true,
+              mode: "repulse",
+            },
+          },
+          modes: {
+            push: {
+              quantity: 4,
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4,
+            },
+          },
+        },
+        particles: {
+          color: {
+            value: "#ffffff",
+          },
+          links: {
+            color: "#ffffff",
+            distance: 150,
             enable: true,
-            mode: "push",
+            opacity: 0.5,
+            width: 1,
           },
-          onHover: {
+          move: {
+            direction: MoveDirection.none,
             enable: true,
-            mode: "repulse",
+            outModes: {
+              default: OutMode.out,
+            },
+            random: false,
+            speed: 6,
+            straight: false,
+          },
+          number: {
+            density: {
+              enable: true,
+            },
+            value: 80,
+          },
+          opacity: {
+            value: 0.5,
+          },
+          shape: {
+            type: "circle",
+          },
+          size: {
+            value: { min: 1, max: 5 },
           },
         },
-        modes: {
-          push: {
-            quantity: 4,
-          },
-          repulse: {
-            distance: 200,
-            duration: 0.4,
-          },
-        },
-      },
-      particles: {
-        color: {
-          value: "#ffffff",
-        },
-        links: {
-          color: "#ffffff",
-          distance: 150,
-          enable: true,
-          opacity: 0.5,
-          width: 1,
-        },
-        move: {
-          direction: MoveDirection.none,
-          enable: true,
-          outModes: {
-            default: OutMode.out,
-          },
-          random: false,
-          speed: 6,
-          straight: false,
-        },
-        number: {
-          density: {
-            enable: true,
-          },
-          value: 80,
-        },
-        opacity: {
-          value: 0.5,
-        },
-        shape: {
-          type: "circle",
-        },
-        size: {
-          value: { min: 1, max: 5 },
-        },
-      },
-      detectRetina: true,
-    }),
+        detectRetina: true,
+      }
+    ),
     [],
   );
 
@@ -106,7 +107,7 @@ const ParticlesBackground = () => {
           options={options}
         />
       )}
-      <Paper
+      {/* <Paper
         elevation={4}
         style={{
           position: "relative", // Make sure the Paper has a stacking context
@@ -120,9 +121,9 @@ const ParticlesBackground = () => {
         Sohil Maruay
       </Paper>
       <Typography style={{
-          position: "relative", // Make sure the Paper has a stacking context
-          zIndex: 10, // Ensure it's above the particles
-        }}>sohil mara</Typography>
+        position: "relative", // Make sure the Paper has a stacking context
+        zIndex: 10, // Ensure it's above the particles
+      }}>sohil mara</Typography> */}
     </>
   );
 };
