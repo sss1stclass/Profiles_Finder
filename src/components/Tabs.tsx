@@ -21,14 +21,12 @@ function Tabs() {
             <TabList textColor="inherit" onChange={handleChange} aria-label="lab API tabs example">
               <Tab sx={{ textTransform: 'capitalize' }} icon={<GitHubIcon />} label="GitHub" value="1" />
               <Tab sx={{ textTransform: 'capitalize' }} icon={<LinkedInIcon />} label="LinkedIn" value="2" disabled/>
-              {/* <Tab label="Item Three" value="3" /> */}
             </TabList>
           </Box>
           <TabPanel value="1">
             <GitHubTab />
           </TabPanel>
           <TabPanel value="2">Under Construction</TabPanel>
-          {/* <TabPanel value="3">Item Three</TabPanel> */}
         </TabContext>
       </Paper>
     </Box>
