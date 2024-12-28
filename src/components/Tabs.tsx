@@ -14,11 +14,8 @@ function Tabs() {
   };
 
   return (
-    <Box sx={{height:'90vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position:'relative', zIndex:10, p:4, border:'2px solid white' }}>
-      <Paper sx={{ width: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }} style={{
-        position: "relative",
-        zIndex: 10
-      }} >
+    <Box sx={{height:'90vh', width:'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', position:'relative', zIndex:10, p:2}}>
+      <Paper sx={{ width: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
         <TabContext value={value} >
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList textColor="inherit" onChange={handleChange} aria-label="lab API tabs example">
