@@ -107,23 +107,6 @@ const ParticlesBackground = () => {
           options={options}
         />
       )}
-      {/* <Paper
-        elevation={4}
-        style={{
-          position: "relative", // Make sure the Paper has a stacking context
-          zIndex: 10, // Ensure it's above the particles
-          padding: "20px",
-          marginTop: "20px",
-          textAlign: "center",
-          backgroundColor: "#fff", // Optional, add a background color if needed
-        }}
-      >
-        Sohil Maruay
-      </Paper>
-      <Typography style={{
-        position: "relative", // Make sure the Paper has a stacking context
-        zIndex: 10, // Ensure it's above the particles
-      }}>sohil mara</Typography> */}
     </>
   );
 };
