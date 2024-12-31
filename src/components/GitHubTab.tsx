@@ -6,13 +6,16 @@ import {
     CardContent,
     CardMedia,
     CircularProgress,
+    IconButton,
     Skeleton,
     TextField,
+    Tooltip,
     Typography
 } from '@mui/material';
 import { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 type GitHubUser = {
     avatar_url: string;
@@ -77,16 +80,32 @@ const GitHubTab = () => {
                         <CardMedia
                             component="img"
                             sx={{ width: '50%', height: 180, borderRadius: '50%' }}
-                            image={gitData.avatar_url || 'fallback-image-url'}
-                            alt={gitData.login}
+                            image={gitData?.avatar_url || 'fallback-image-url'}
+                            alt={gitData?.login}
                         />
                     </Box>
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {gitData.login}
+                        <Typography display='flex' alignItems='center' gutterBottom variant="h5" component="div">
+                            {gitData.name ? gitData.name : inputData}
+                            <Tooltip title="Visit Full Profile">
+                                <a href={gitData?.html_url} target="_blank" rel="noopener noreferrer">
+                                    <IconButton aria-label="delete">
+                                        <OpenInNewIcon sx={{ height: '20px', width: '20px' }} />
+                                    </IconButton>
+                                </a>
+                            </Tooltip>
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            {gitData.bio || 'No bio available.'}
+                            {gitData?.bio || 'No bio available.'}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            Total Repo: {gitData?.public_repos || 'N/A'}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            Followers: {gitData?.followers || 'N/A'}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            Following: {gitData?.following || 'N/A'}
                         </Typography>
                     </CardContent>
                     <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
