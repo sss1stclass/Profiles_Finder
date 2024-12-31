@@ -5,7 +5,7 @@ import Tab from '@mui/material/Tab';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubTab from "./GitHubTab";
-import LinkedInTab from "./LInkedInTab";
+import LinkInTab from "./LinkInTab";
 
 
 function Tabs() {
@@ -29,7 +29,7 @@ function Tabs() {
             <GitHubTab />
           </TabPanel>
           <TabPanel value="2">
-            <LinkedInTab />
+            <LinkInTab />
           </TabPanel>
         </TabContext>
       </Paper>

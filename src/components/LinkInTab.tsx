@@ -21,7 +21,7 @@ type GitHubUser = {
     [key: string]: any;
 };
 
-const LinkedInTab = () => {
+const LinkInTab = () => {
     const [inputData, setInputData] = useState('');
     const [gitData, setGitData] = useState<GitHubUser | null>(null);
     const [loading, setLoading] = useState(false);
@@ -138,4 +138,4 @@ const LinkedInTab = () => {
     );
 };
 
-export default LinkedInTab;
+export default LinkInTab;
