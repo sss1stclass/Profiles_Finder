@@ -7,6 +7,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubTab from "./GitHubTab";
 import LinkedInTab from "./LInkedInTab";
 
+
 function Tabs() {
   const [value, setValue] = useState('1');
 
@@ -28,7 +29,7 @@ function Tabs() {
             <GitHubTab />
           </TabPanel>
           <TabPanel value="2">
-            <LinkedInTab/>
+            <LinkedInTab />
           </TabPanel>
         </TabContext>
       </Paper>
