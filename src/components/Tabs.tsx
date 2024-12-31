@@ -5,6 +5,7 @@ import Tab from '@mui/material/Tab';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubTab from "./GitHubTab";
+import LinkedInTab from "./LInkedInTab";
 
 function Tabs() {
   const [value, setValue] = useState('1');
@@ -26,7 +27,9 @@ function Tabs() {
           <TabPanel value="1">
             <GitHubTab />
           </TabPanel>
-          <TabPanel value="2">Under Construction</TabPanel>
+          <TabPanel value="2">
+            <LinkedInTab/>
+          </TabPanel>
         </TabContext>
       </Paper>
     </Box>

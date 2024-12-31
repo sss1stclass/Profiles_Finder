@@ -109,8 +109,8 @@ const GitHubTab = () => {
                         </Typography>
                     </CardContent>
                     <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <Button onClick={handleSearchAgain} variant="contained" color="info" size="small">
-                            Search Again
+                        <Button onClick={handleSearchAgain} variant="contained" color="warning" size="small">
+                            Search New User
                         </Button>
                     </CardActions>
                 </Card>
