@@ -1,11 +1,14 @@
-import { Box, IconButton, Paper, Tooltip } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { useState } from "react";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import Tab from '@mui/material/Tab';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
 import GitHubTab from "./GitHubTab";
 import LinkInTab from "./LinkInTab";
+import InstagramTab from "./InstagramTab";
+
 
 
 function Tabs() {
@@ -22,7 +25,8 @@ function Tabs() {
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList textColor="inherit" onChange={handleChange} aria-label="lab API tabs example">
               <Tab sx={{ textTransform: 'capitalize' }} icon={<GitHubIcon />} label="GitHub" value="1" />
-              <Tab sx={{ textTransform: 'capitalize' }} icon={<Tooltip title="Under Construction"><IconButton> <LinkedInIcon /></IconButton></Tooltip>} label="LinkedIn" value="2" />
+              <Tab sx={{ textTransform: 'capitalize' }} icon={<LinkedInIcon />} label="LinkedIn" value="2" />
+              <Tab sx={{ textTransform: 'capitalize' }} icon={<InstagramIcon />} label="Instagram" value="3" />
             </TabList>
           </Box>
           <TabPanel value="1">
@@ -30,6 +34,9 @@ function Tabs() {
           </TabPanel>
           <TabPanel value="2">
             <LinkInTab />
+          </TabPanel>
+          <TabPanel value="3">
+            <InstagramTab />
           </TabPanel>
         </TabContext>
       </Paper>
