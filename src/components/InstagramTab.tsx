@@ -88,7 +88,7 @@ const InstagramTab = () => {
                             <CardMedia
                                 component="img"
                                 sx={{ width: '50%', height: 180, borderRadius: '50%' }}
-                                image={gitData?.profile_pic_url_hd}
+                                image='https://i.pinimg.com/236x/20/c6/77/20c677b590a91c81a194e33798a09581.jpg'
                                 alt="Profile Pic"
                             />
                     </Box>
