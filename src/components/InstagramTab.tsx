@@ -131,7 +131,7 @@ const InstagramTab = () => {
                     </Box>
                     <CardContent>
                         <Typography gutterBottom variant="h6" component="div">
-                            Enter your LinkedIn Username
+                            Enter your Instagram Username
                         </Typography>
                         <TextField
                             label="Username"
