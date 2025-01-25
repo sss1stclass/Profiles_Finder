@@ -7,6 +7,7 @@ import {
     CardMedia,
     CircularProgress,
     IconButton,
+    InputAdornment,
     Skeleton,
     TextField,
     Tooltip,
@@ -16,6 +17,7 @@ import { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import ClearIcon from '@mui/icons-material/Clear';
 
 type GitHubUser = {
     profilePicture: string;
@@ -25,7 +27,7 @@ type GitHubUser = {
 };
 
 const LinkInTab = () => {
-    const [inputData, setInputData] = useState('');
+    const [inputData, setInputData] = useState('sohil-maurya-154b741a2');
     const [gitData, setGitData] = useState<GitHubUser | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -142,6 +144,19 @@ const LinkInTab = () => {
                             onChange={handleChange}
                             onKeyPress={handleKeyPress}
                             fullWidth
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="clear input"
+                                            onClick={() => setInputData('')}
+                                            edge="end"
+                                        >
+                                            <ClearIcon />
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
                         />
                         {error && (
                             <Typography color="error" sx={{ marginTop: 1 }}>

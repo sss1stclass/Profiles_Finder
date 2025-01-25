@@ -7,6 +7,7 @@ import {
     CardMedia,
     CircularProgress,
     IconButton,
+    InputAdornment,
     Skeleton,
     TextField,
     Tooltip,
@@ -16,6 +17,7 @@ import { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import ClearIcon from '@mui/icons-material/Clear';
 
 type GitHubUser = {
     profilePicture: string;
@@ -25,7 +27,7 @@ type GitHubUser = {
 };
 
 const InstagramTab = () => {
-    const [inputData, setInputData] = useState('');
+    const [inputData, setInputData] = useState('sohilMaurya88');
     const [gitData, setGitData] = useState<GitHubUser | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -85,12 +87,12 @@ const InstagramTab = () => {
             ) : gitData ? (
                 <Card sx={{ maxWidth: 345 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <CardMedia
-                                component="img"
-                                sx={{ width: '50%', height: 180, borderRadius: '50%' }}
-                                image='https://i.pinimg.com/236x/20/c6/77/20c677b590a91c81a194e33798a09581.jpg'
-                                alt="Profile Pic"
-                            />
+                        <CardMedia
+                            component="img"
+                            sx={{ width: '50%', height: 180, borderRadius: '50%' }}
+                            image='https://i.pinimg.com/236x/20/c6/77/20c677b590a91c81a194e33798a09581.jpg'
+                            alt="Profile Pic"
+                        />
                     </Box>
                     <CardContent>
                         <Typography display='flex' alignItems='center' gutterBottom variant="h5" component="div">
@@ -140,6 +142,19 @@ const InstagramTab = () => {
                             onChange={handleChange}
                             onKeyPress={handleKeyPress}
                             fullWidth
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="clear input"
+                                            onClick={() => setInputData('')}
+                                            edge="end"
+                                        >
+                                            <ClearIcon />
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
                         />
                         {error && (
                             <Typography color="error" sx={{ marginTop: 1 }}>
