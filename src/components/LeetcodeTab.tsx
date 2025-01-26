@@ -26,8 +26,9 @@ type GitHubUser = {
     [key: string]: any;
 };
 
-const GitHubTab = () => {
-    const [inputData, setInputData] = useState('sss1stclass');
+const LeetcodeTab = () => {
+    const [inputData, setInputData] = useState('sohilkr88');
+    const [problemData, setProblemData] = useState<any>(null)
     const [gitData, setGitData] = useState<GitHubUser | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -40,12 +41,15 @@ const GitHubTab = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.get(`https://api.github.com/users/${inputData}`);
+            const response = await axios.get(`https://alfa-leetcode-api.onrender.com/${inputData}`);
             setGitData(response.data);
         } catch (error: any) {
             if (error.response?.status === 404) {
                 setError('User not found. Please check the username.');
-            } else {
+            } else if (error.response?.status === 429) {
+                setError('Too many request from this IP, try again in 1 hour')
+            }
+            else {
                 setError('An error occurred. Please try again.');
             }
             setGitData(null);
@@ -53,6 +57,34 @@ const GitHubTab = () => {
             setLoading(false);
         }
     };
+    const handleFetchDataForProblemSolved = async () => {
+        setError(null);
+        try {
+            const response = await axios.get(`https://alfa-leetcode-api.onrender.com/userProfile/${inputData}`);
+            setProblemData(response.data);
+        } catch (error: any) {
+            if (error.response?.status === 404) {
+                setError('User not found. Please check the username.');
+            } else if (error.response?.status === 429) {
+                setError('Too many request from this IP, try again in 1 hour')
+            }
+            else {
+                setError('An error occurred. Please try again.');
+            }
+            setProblemData(null);
+        } finally {
+        }
+    };
+
+
+
+    const handleBothData = async () => {
+        await handleFetchData();
+        await handleFetchDataForProblemSolved();
+
+    }
+
+    console.log(problemData)
 
     const handleKeyPress = (event: React.KeyboardEvent) => {
         if (event.key === 'Enter' && inputData) {
@@ -82,32 +114,35 @@ const GitHubTab = () => {
                         <CardMedia
                             component="img"
                             sx={{ width: '50%', height: 180, borderRadius: '50%' }}
-                            image={gitData?.avatar_url || 'fallback-image-url'}
-                            alt={gitData?.login}
+                            image={gitData?.avatar || 'fallback-image-url'}
+                            alt='Img Not Available'
                         />
                     </Box>
                     <CardContent>
                         <Typography display='flex' alignItems='center' gutterBottom variant="h5" component="div" m={0}>
                             {gitData.name ? gitData.name : inputData}
                             <Tooltip title="Visit Full Profile">
-                                <a href={gitData?.html_url} target="_blank" rel="noopener noreferrer">
+                                <a href={`https://leetcode.com/u/${inputData}`} target="_blank" rel="noopener noreferrer">
                                     <IconButton aria-label="delete">
                                         <OpenInNewIcon sx={{ height: '20px', width: '20px' }} />
                                     </IconButton>
                                 </a>
                             </Tooltip>
                         </Typography>
-                        <Typography variant="body2" color="text.secondary" mb={1}>
-                            {gitData?.bio || 'No bio available.'}
+                        <Typography mb={1} variant="body2" color="text.secondary">
+                            {gitData?.about || 'No bio available.'}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            Total Repo: {gitData?.public_repos || 'N/A'}
+                            <span style={{ fontWeight: 600 }}>Ranking: </span> {gitData?.ranking || 'N/A'}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            Followers: {gitData?.followers || 'N/A'}
+                            <span style={{ fontWeight: 600 }}> Skills: </span> {`[ ${gitData?.skillTags.join(',')} ]` || 'N/A'}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            Following: {gitData?.following || 'N/A'}
+                            <span style={{ fontWeight: 600 }}>Total Problem Solved: </span> {problemData?.totalSolved || 'N/A'}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            <span style={{ fontWeight: 600 }}>Easy/ Medium/ Hard: </span>   {`${problemData?.easySolved} / ${problemData?.mediumSolved} / ${problemData?.hardSolved}` || 'N/A'}
                         </Typography>
                     </CardContent>
                     <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -122,13 +157,13 @@ const GitHubTab = () => {
                         <CardMedia
                             component="img"
                             sx={{ width: '50%', height: 180, borderRadius: '50%' }}
-                            image='data:image/png;base64,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'
+                            image='data:image/png;base64,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'
                             alt='Image is Broken'
                         />
                     </Box>
                     <CardContent>
                         <Typography gutterBottom variant="h6" component="div">
-                            Enter your GitHub Username
+                            Enter your Leetcode Username
                         </Typography>
                         <TextField
                             label="Username"
@@ -160,7 +195,7 @@ const GitHubTab = () => {
                     <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <Button
                             disabled={inputData.length <= 0 || loading}
-                            onClick={handleFetchData}
+                            onClick={handleBothData}
                             variant="contained"
                             color="info"
                             endIcon={loading ? <CircularProgress size={20} /> : <SearchIcon />}
@@ -175,4 +210,4 @@ const GitHubTab = () => {
     );
 };
 
-export default GitHubTab;
+export default LeetcodeTab;

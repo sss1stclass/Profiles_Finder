@@ -95,7 +95,7 @@ const InstagramTab = () => {
                         />
                     </Box>
                     <CardContent>
-                        <Typography display='flex' alignItems='center' gutterBottom variant="h5" component="div">
+                        <Typography display='flex' alignItems='center' gutterBottom variant="h5" component="div" m={0}>
                             {gitData?.full_name ? gitData?.full_name : inputData}
                             <Tooltip title="Visit Full Profile">
                                 <a href={`https://www.instagram.com/${inputData}/`} target="_blank" rel="noopener noreferrer">
@@ -105,7 +105,7 @@ const InstagramTab = () => {
                                 </a>
                             </Tooltip>
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography variant="body2" color="text.secondary" mb={1}>
                             {gitData?.biography || 'No bio available.'}
                         </Typography>
                         <Typography variant="body1" color="text.secondary">

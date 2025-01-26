@@ -97,7 +97,7 @@ const LinkInTab = () => {
                         />
                     </Box>
                     <CardContent>
-                        <Typography display='flex' alignItems='center' gutterBottom variant="h5" component="div">
+                        <Typography display='flex' alignItems='center' gutterBottom variant="h5" component="div" m={0}>
                             {gitData?.firstName ? gitData?.firstName + " " + gitData?.lastName : inputData}
                             <Tooltip title="Visit Full Profile">
                                 <a href={`https://www.linkedin.com/in/${inputData}/`} target="_blank" rel="noopener noreferrer">
@@ -107,7 +107,7 @@ const LinkInTab = () => {
                                 </a>
                             </Tooltip>
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography variant="body2" color="text.secondary" mb={1}>
                             {gitData?.headline || 'No bio available.'}
                         </Typography>
                         <Typography variant="body1" color="text.secondary">
