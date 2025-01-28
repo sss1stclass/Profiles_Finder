@@ -112,7 +112,7 @@ const InstagramTab = () => {
                             <span style={{ fontWeight: 600 }}>Followers:</span>  <span >{gitData?.follower_count}</span>
                         </Typography>
                         <Typography variant="body1" color="text.secondary">
-                            <span style={{ fontWeight: 600 }}>Followings: </span><span style={{ fontWeight: 500 }}>{gitData?.following_count || 'N/A'}</span>
+                            <span style={{ fontWeight: 600 }}>Followings: </span><span>{gitData?.following_count || 'N/A'}</span>
                         </Typography>
                     </CardContent>
                     <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

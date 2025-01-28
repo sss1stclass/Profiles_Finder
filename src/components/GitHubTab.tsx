@@ -101,13 +101,13 @@ const GitHubTab = () => {
                             {gitData?.bio || 'No bio available.'}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            Total Repo: {gitData?.public_repos || 'N/A'}
+                            <span style={{ fontWeight: 600 }}>Total Repo: </span>  {gitData?.public_repos || 'N/A'}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            Followers: {gitData?.followers || 'N/A'}
+                            <span style={{ fontWeight: 600 }}>Followers: </span>  {gitData?.followers || 'N/A'}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            Following: {gitData?.following || 'N/A'}
+                            <span style={{ fontWeight: 600 }}>Followings: </span> {gitData?.following || 'N/A'}
                         </Typography>
                     </CardContent>
                     <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
