@@ -94,6 +94,7 @@ const LeetcodeTab = () => {
     const handleSearchAgain = () => {
         setInputData('');
         setGitData(null);
+        setProblemData(null);
         setError(null);
     };
 
