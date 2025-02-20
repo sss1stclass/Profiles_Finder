@@ -32,6 +32,7 @@ const LeetcodeTab = () => {
     const [gitData, setGitData] = useState<GitHubUser | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [problemLoading, setProblemLoading] = useState(false);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputData(event.target.value);
@@ -59,6 +60,7 @@ const LeetcodeTab = () => {
     };
     const handleFetchDataForProblemSolved = async () => {
         setError(null);
+        setProblemLoading(true);
         try {
             const response = await axios.get(`https://alfa-leetcode-api.onrender.com/userProfile/${inputData}`);
             setProblemData(response.data);
@@ -73,18 +75,15 @@ const LeetcodeTab = () => {
             }
             setProblemData(null);
         } finally {
+            setProblemLoading(false);
         }
     };
-
-
 
     const handleBothData = async () => {
         await handleFetchData();
         await handleFetchDataForProblemSolved();
 
     }
-
-    console.log(problemData)
 
     const handleKeyPress = (event: React.KeyboardEvent) => {
         if (event.key === 'Enter' && inputData) {
@@ -100,7 +99,7 @@ const LeetcodeTab = () => {
 
     return (
         <Box sx={{ minWidth: 345, margin: 'auto', padding: 2 }}>
-            {loading ? (
+            {(loading || problemLoading) ? (
                 <Card sx={{ maxWidth: 345, minHeight: 400, margin: 'auto', padding: 2 }}>
                     <Skeleton variant="circular" width={80} height={80} sx={{ margin: 'auto', marginTop: 2 }} />
                     <Skeleton variant="text" sx={{ fontSize: '1.5rem', marginTop: 2, marginBottom: 1 }} width="60%" height={40} />
@@ -108,7 +107,7 @@ const LeetcodeTab = () => {
                     <Skeleton variant="rectangular" width="100%" height={200} />
                     <Skeleton variant="text" sx={{ fontSize: '1rem', marginTop: 2 }} width="40%" height={30} />
                 </Card>
-            ) : gitData ? (
+            ) : (gitData) ? (
                 <Card sx={{ maxWidth: 345 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <CardMedia
