@@ -39,7 +39,7 @@ const LinkInTab = () => {
     const options: any = {
         headers: {
             'x-rapidapi-key': 'd5bfa59e35msh67b901ce161ab73p1a63b1jsn1d02a6cb597a',
-            'x-rapidapi-host': 'linkedin-data-api.p.rapidapi.com'
+            'x-rapidapi-host': 'linkedin-scraper-api-real-time-fast-affordable.p.rapidapi.com'
         }
 
     }
@@ -48,7 +48,7 @@ const LinkInTab = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.get(`https://linkedin-data-api.p.rapidapi.com?username=${inputData}`, options);
+            const response = await axios.get(`https://linkedin-scraper-api-real-time-fast-affordable.p.rapidapi.com/profile/detail?username=${inputData}`, options);
             setGitData(response.data);
         } catch (error: any) {
             if (error.response?.status === 404) {
@@ -92,13 +92,13 @@ const LinkInTab = () => {
                         <CardMedia
                             component="img"
                             sx={{ width: '50%', height: 180, borderRadius: '50%' }}
-                            image={gitData?.profilePicture}
-                            alt={gitData?.loginjh}
+                            image={gitData?.data.basic_info.profile_picture_url}
+                            alt='N/A'
                         />
                     </Box>
                     <CardContent>
                         <Typography display='flex' alignItems='center' gutterBottom variant="h5" component="div" m={0}>
-                            {gitData?.firstName ? gitData?.firstName + " " + gitData?.lastName : inputData}
+                            {gitData?.data.basic_info.fullname}
                             <Tooltip title="Visit Full Profile">
                                 <a href={`https://www.linkedin.com/in/${inputData}/`} target="_blank" rel="noopener noreferrer">
                                     <IconButton aria-label="delete">
@@ -108,13 +108,13 @@ const LinkInTab = () => {
                             </Tooltip>
                         </Typography>
                         <Typography variant="body2" color="text.secondary" mb={1}>
-                            {gitData?.headline || 'No bio available.'}
+                            {gitData?.data.basic_info.headline || 'No bio available.'}
                         </Typography>
                         <Typography variant="body1" color="text.secondary">
-                            <span style={{ fontWeight: 600 }}>Is Open To Work:</span>  <span >{gitData?.isOpenToWork ? "Yes" : 'No'}</span>
+                            <span style={{ fontWeight: 600 }}>Total Followers:</span>  <span >{gitData?.data.basic_info.follower_count}</span>
                         </Typography>
                         <Typography variant="body1" color="text.secondary">
-                            <span style={{ fontWeight: 600 }}>Summary: </span><span style={{ fontWeight: 500 }}>{gitData?.summary || 'N/A'}</span>
+                            <span style={{ fontWeight: 600 }}>Summary: </span><span style={{ fontWeight: 500 }}>{gitData?.data.basic_info.about.slice(0,199).concat('...') || 'N/A'}</span>
                         </Typography>
                     </CardContent>
                     <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
