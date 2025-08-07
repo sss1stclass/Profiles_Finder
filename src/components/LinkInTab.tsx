@@ -62,8 +62,6 @@ const LinkInTab = () => {
         }
     };
 
-    console.log(gitData);
-
     const handleKeyPress = (event: React.KeyboardEvent) => {
         if (event.key === 'Enter' && inputData) {
             handleFetchData();
